@@ -68,13 +68,15 @@ export default function HomeView(): ReactElement {
           </div>
         </div>
       </Header>
-      <small className="flex justify-between">
-        <span>Here are your conversations:</span>
-        <Link to="new" className="text-blue-700">
-          Make a new one
-        </Link>
-      </small>
-      <ConversationListView />
+      <div className="mt-10">
+        <small className="flex justify-between">
+          <span>Here are your conversations:</span>
+          <Link to="new" className="text-blue-700">
+            Make a new one
+          </Link>
+        </small>
+        <ConversationListView />
+      </div>
     </div>
   );
 }

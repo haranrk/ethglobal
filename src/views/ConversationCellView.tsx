@@ -3,6 +3,7 @@ import { Conversation, Message } from "../model/db";
 import { shortAddress } from "../util/shortAddress";
 import ReactTimeAgo from "react-time-ago";
 import { MessageContent } from "./MessageCellView";
+import { Avatar } from '@ensdomains/thorin'
 
 export default function ConversationCellView({
   conversation,
@@ -15,9 +16,14 @@ export default function ConversationCellView({
     <div className="mt-2 p-2 border dark:border-zinc-600 rounded">
       <div className="flex items-center justify-between space-x-2">
         <div className="hover:underline">
-          <span className="text-blue-700 dark:text-blue-500">
-            {conversation.title || shortAddress(conversation.peerAddress)}
-          </span>{" "}
+          <div className="flex flex-row">
+            <div className="w-10">
+              <Avatar label="Noun 97" src={""} />
+            </div>
+            <span className="text-blue-700 dark:text-blue-500">
+              {conversation.title || shortAddress(conversation.peerAddress)}
+            </span>{" "}
+          </div>
         </div>
         <div className="text-xs text-zinc-500">
           <ReactTimeAgo date={conversation.updatedAt} />
