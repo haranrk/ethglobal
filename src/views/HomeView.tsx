@@ -7,10 +7,13 @@ import Header from "../components/Header";
 import { useDisconnect } from "wagmi";
 import { Avatar, Spinner, Card } from '@ensdomains/thorin'
 import { Profile } from '@ensdomains/thorin'
+import { useEnsName, useEnsAvatar } from 'wagmi'
 
 export default function HomeView(): ReactElement {
   const client = useClient()!;
   const [copied, setCopied] = useState(false);
+  const ensName = useEnsName({ address: client.address });
+  const ensAvatar = useEnsAvatar({ address: client.address });
 
   const copyToClipBoard = async (text: string) => {
     try {
@@ -44,6 +47,8 @@ export default function HomeView(): ReactElement {
             <div style={{ maxWidth: '50px' }}>
               <Profile
                 address={client.address}
+                avatar={ensAvatar?.data || undefined}
+                ensName={ensName?.data || undefined}
                 dropdownItems={[
                   {
                     label: 'Copy Address',
@@ -54,10 +59,9 @@ export default function HomeView(): ReactElement {
               // ensName="frontend.ens.eth"
               />
             </div>
-            Hi {shortAddress(client.address)}{" "}
-            <button className="text-xs text-zinc-600" onClick={copy}>
+            {/* <button className="text-xs text-zinc-600" onClick={copy}>
               {copied ? "Copied Address!" : "Copy Address"}
-            </button>
+            </button> */}
           </div>
           <div>
             <button onClick={logout}>Logout</button>

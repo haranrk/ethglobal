@@ -14,6 +14,7 @@
   "dependencies": {
     "@animxyz/core": "^0.6.6",
     "@animxyz/react": "^0.6.7",
+    "@ensdomains/thorin": "^0.6.44",
     "@heroicons/react": "^2.0.18",
     "@rainbow-me/rainbowkit": "^0.10.0",
     "@xmtp/content-type-reaction": "^1.0.1",
@@ -33,6 +34,8 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.13.0",
     "react-time-ago": "^7.2.1",
+    "react-transition-state": "^2.1.1",
+    "styled-components": "^6.0.8",
     "wagmi": "^0.10.0",
     "web3.storage": "^4.5.4"
   },
