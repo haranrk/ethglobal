@@ -5,11 +5,20 @@ import { shortAddress } from "../util/shortAddress";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { useDisconnect } from "wagmi";
+import { Avatar, Spinner, Card } from '@ensdomains/thorin'
+import { Profile } from '@ensdomains/thorin'
 
 export default function HomeView(): ReactElement {
   const client = useClient()!;
   const [copied, setCopied] = useState(false);
 
+  const copyToClipBoard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text)
+    } catch (err) {
+      console.error('Failed to copy text: ', err)
+    }
+  }
   function copy() {
     navigator.clipboard.writeText(client.address);
     setCopied(true);
@@ -32,6 +41,19 @@ export default function HomeView(): ReactElement {
       <Header>
         <div className="flex justify-between">
           <div>
+            <div style={{ maxWidth: '50px' }}>
+              <Profile
+                address={client.address}
+                dropdownItems={[
+                  {
+                    label: 'Copy Address',
+                    color: 'text',
+                    onClick: () => copyToClipBoard(client.address),
+                  }
+                ]}
+              // ensName="frontend.ens.eth"
+              />
+            </div>
             Hi {shortAddress(client.address)}{" "}
             <button className="text-xs text-zinc-600" onClick={copy}>
               {copied ? "Copied Address!" : "Copy Address"}

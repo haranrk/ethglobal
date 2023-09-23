@@ -4,6 +4,8 @@ import "@animxyz/core";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
+import { ThemeProvider } from 'styled-components'
+import { ThorinGlobalStyles, darkTheme, lightTheme } from '@ensdomains/thorin'
 import ClientProvider from "./contexts/ClientContext.tsx";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { findConversation } from "./model/conversations";
@@ -34,10 +36,14 @@ const router = createHashRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ClientProvider>
-      <WalletContext>
-        <RouterProvider router={router} />
-      </WalletContext>
-    </ClientProvider>
+    <ThemeProvider theme={lightTheme}>
+      <ThorinGlobalStyles />
+
+      <ClientProvider>
+        <WalletContext>
+          <RouterProvider router={router} />
+        </WalletContext>
+      </ClientProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
