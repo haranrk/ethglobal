@@ -35,10 +35,13 @@ export async function upload(
     new AttachmentCodec()
   );
 
-  let token: string | null = localStorage.getItem("web3storageToken");
+  let token: string | null =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDA2NDYzQjc0RUMyN2I4YTNkMDU4OTM3MWY0NUZlMTVkMjdFODdENzIiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2OTU0MzYwOTMwMTcsIm5hbWUiOiJUZXN0IHRva2VuIn0.5V4y7SvPCEhwxzWlnHErDxlGC_WnLCWnA9HT4-ERFbM";
 
   if (!token) {
-    token = prompt("Enter your web3.storage token");
+    token = prompt(
+      "Enter your web3.storage token. Get one from visiting https://web3.storage"
+    );
 
     if (token) {
       localStorage.setItem("web3storageToken", token);

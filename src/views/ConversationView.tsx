@@ -82,28 +82,34 @@ export default function ConversationView({
           />
         )}
       </Header>
-      <div className="mt-10">
-        {messages?.length == 0 && <p>No messages yet.</p>}
-        {messages ? (
-          messages.reduce((acc: ReactElement[], message: Message, index) => {
-            const showRead = showReadReceipt && index === messages.length - 1;
-            if (appearsInMessageList(message)) {
-              acc.push(
-                <MessageCellView
-                  key={message.id}
-                  message={message}
-                  readReceiptText={showRead ? "Read" : undefined}
-                />
-              );
-            }
 
-            return acc;
-          }, [] as ReactElement[])
-        ) : (
-          <span>Could not load messages</span>
-        )}
+      <div className="grid grid-cols-3">
+        <div>
+          <div className="mt-10">
+            {messages?.length == 0 && <p>No messages yet.</p>}
+            {messages ? (
+              messages.reduce((acc: ReactElement[], message: Message, index) => {
+                const showRead = showReadReceipt && index === messages.length - 1;
+                if (appearsInMessageList(message)) {
+                  acc.push(
+                    <MessageCellView
+                      key={message.id}
+                      message={message}
+                      readReceiptText={showRead ? "Read" : undefined}
+                    />
+                  );
+                }
+
+                return acc;
+              }, [] as ReactElement[])
+            ) : (
+              <span>Could not load messages</span>
+            )}
+          </div>
+          <MessageComposerView conversation={conversation} />
+        </div>
+        <div>Hellow</div>
       </div>
-      <MessageComposerView conversation={conversation} />
     </div>
   );
 }
