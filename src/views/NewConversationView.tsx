@@ -64,14 +64,13 @@ export default function NewConversationView(): ReactElement {
   async function onSubmit() {
     // const address = validateAddress();
     if (!validAddress) return;
-    console.log(validAddress)
+
     try {
       const conversation = await startConversation(client, validAddress);
       navigate(`/c/${conversation.topic}`);
     } catch (e) {
       const error = String(e)
       setError(error);
-      alert(error);
     }
   }
 
@@ -91,7 +90,6 @@ export default function NewConversationView(): ReactElement {
       <Header>
         <div className="flex justify-between">
           <h1>Make a new conversation</h1>
-          <p>{validAddress}</p>
           <Link className="text-blue-600" to="/">
             Go Back
           </Link>
@@ -130,17 +128,14 @@ export default function NewConversationView(): ReactElement {
           </label>
         </form>
       </div> */}
-      {/* <Toast
-        description="This is an example toast."
-        open={error}
-        title="Example Toast"
+      <Toast
+        description={error}
+        open={!!error}
+        title=""
         variant="desktop"
-        onClose={() => setError(false)}
+        onClose={() => setError(undefined)}
       >
-        <Button shadowless size="small">
-          Click Me
-        </Button>
-      </Toast> */}
+      </Toast>
     </div>
   );
 }

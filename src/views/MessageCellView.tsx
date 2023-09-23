@@ -11,6 +11,7 @@ import { ContentTypeReply, Reply } from "@xmtp/content-type-reply";
 import MessageRepliesView from "./MessageRepliesView";
 import ReactionsView from "./ReactionsView";
 import ReadReceiptView from "./ReadReceiptView";
+import { useEnsName, useEnsAvatar } from 'wagmi'
 
 function ImageAttachmentContent({
   attachment,
@@ -103,13 +104,14 @@ export default function MessageCellView({
   message: Message;
   readReceiptText: string | undefined;
 }): ReactElement {
+  const ensName = useEnsName({ address: message.senderAddress });
   return (
     <div className="flex">
       <span
         title={message.sentByMe ? "You" : message.senderAddress}
         className={message.sentByMe ? "text-zinc-500" : "text-green-500"}
       >
-        {shortAddress(message.senderAddress)}:
+        {ensName?.data || shortAddress(message.senderAddress)}:
       </span>
       <div className="ml-2">
         <MessageContent message={message} />

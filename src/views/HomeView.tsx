@@ -56,7 +56,6 @@ export default function HomeView(): ReactElement {
                     onClick: () => copyToClipBoard(client.address),
                   }
                 ]}
-              // ensName="frontend.ens.eth"
               />
             </div>
             {/* <button className="text-xs text-zinc-600" onClick={copy}>

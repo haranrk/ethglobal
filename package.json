@@ -34,7 +34,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.13.0",
     "react-time-ago": "^7.2.1",
-    "react-transition-state": "^2.1.1",
+    "react-transition-state": "^1.1.5",
     "styled-components": "^6.0.8",
     "wagmi": "^0.10.0",
     "web3.storage": "^4.5.4"
