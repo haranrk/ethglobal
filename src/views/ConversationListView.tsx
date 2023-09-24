@@ -31,16 +31,19 @@ export default function ConversationListView(): ReactElement {
         {readReceiptsEnabled ? "Disable read receipts" : "Enable read receipts"}
       </button> */}
       {conversations?.length == 0 && <p>No conversations yet.</p>}
-      {conversations
-        ? conversations.map((conversation, i) => (
-          <Link to={`c/${conversation.topic}`} key={conversation.topic}>
-            <ConversationCellView
-              conversation={conversation}
-              latestMessage={latestMessages[i]}
-            />
-          </Link>
-        ))
-        : "Could not load conversations"}
+      <div className="flex flex-col gap-2">
+
+        {conversations
+          ? conversations.map((conversation, i) => (
+            <Link to={`/c/${conversation.topic}`} key={conversation.topic}>
+              <ConversationCellView
+                conversation={conversation}
+                latestMessage={latestMessages[i]}
+              />
+            </Link>
+          ))
+          : "Could not load conversations"}
+      </div>
     </div>
   );
 }
