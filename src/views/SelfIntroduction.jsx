@@ -98,7 +98,7 @@ const SelfIntroduction = () => {
     };
 
     try {
-      const response = await fetch("/api/adduser", {
+      const response = await fetch("localhost:5000/api/adduser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
