@@ -49,10 +49,10 @@ const router = createHashRouter([
     path: "selfintroduction",
     element: <SelfIntroduction />,
   },
-  {
-    path: "curatedmatch",
-    element: <CuratedMatch />,
-  },
+  // {
+  //   path: "curatedmatch",
+  //   element: <CuratedMatch />,
+  // },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

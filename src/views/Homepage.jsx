@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <div className="h-screen ">
       {/* Navbar */}
-      <Navbar />
+      <Navbar p/>
 
       {/* Hero Section */}
       <div className="grid grid-cols-1 place-items-center mb-5">
@@ -47,14 +47,17 @@ const HomePage = () => {
 
       {/* About */}
       <div className="grid grid-cols-1 place-items-left ml-10">
-        <h2 className="w-100 text-large font-bold text-black text-left mb-5">
-          WHAT WE BELIEVE
-        </h2>
-        <span className="w-50 mb-5">
-          At MakerMeet, we believe in making the experience intuitive, painless, and meeting other interesting people in the design space fun. 
-        </span>
-        <span className="mb-10 w-75">
-          Built by creatives who want to get more out of meeting people, MakerMeet is the solution to chatting and sharing more easily in Web3 than ever before.        </span>
+        <div className="mb-4">
+          <div className="w-50 mb-5">
+            <Typography fontVariant="large" weight="bold" color="inherit">WHAT WE BELIEVE</Typography>
+          </div>
+          <span className="w-50 mb-5">
+            <Typography fontVariant="heading3" color="inherit">At MakerMeet, we believe in making the experience intuitive, painless, and meeting other interesting people in the design space fun. </Typography>          
+          </span>            
+          <div className="w-50 mb-10">
+            <Typography fontVariant="heading3" color="inherit">Built by creatives who want to get more out of meeting people, MakerMeet is the solution to chatting and sharing more easily in Web3 than ever before.</Typography>
+          </div>
+        </div>
       </div>
     </div>
   );
