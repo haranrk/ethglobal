@@ -1,12 +1,13 @@
 import React from "react";
+import { Button, Heading, Typography } from '@ensdomains/thorin'
+
 export default function Navbar() {
   return (
     <nav className="p-8">
       <div className="flex justify-between">
         <div
-          className="font-bold flex flex-col items-center"
+          className="font-bold flex flex-col items-left"
           style={{
-            textShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             fontFamily: "DM Sans",
             fontStyle: "normal",
             fontWeight: 700,
@@ -17,7 +18,7 @@ export default function Navbar() {
           }}
         >
           <div
-            className="text-xl mb-2"
+            className="text-xl mb-2 text-blue-500"
             style={{
               background: "gradient-text",
               fontSize: "40px",
@@ -35,16 +36,14 @@ export default function Navbar() {
             Connecting Creative Professionals
           </div>
         </div>
-        <div className="flex space-x-4">
+        <div className="flex space-x-3">
           <a href="#" className="text-black">
             Message
           </a>
           <a href="#" className="text-black">
             My profile
           </a>
-          <a href="#" className="text-black">
-            Match me
-          </a>
+          <Button as="a" href="#" colorStyle="accentSecondary">Match Me</Button>
         </div>
       </div>
     </nav>
