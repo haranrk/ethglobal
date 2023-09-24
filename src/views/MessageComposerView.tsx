@@ -77,7 +77,7 @@ export default function MessageComposerView({
   }
 
   return (
-    <div className="   left-0 right-0 bottom-0 p-4 bg-white dark:bg-zinc-900">
+    <div className=" fixed z-10 left-0  right-0 bottom-0 p-4 bg-white dark:bg-zinc-900 drop-shadow-sm">
       <input
         ref={fileField}
         type="file"
