@@ -11,9 +11,10 @@ import ConversationSettingsView from "./ConversationSettingsView";
 import { ContentTypeId } from "@xmtp/xmtp-js";
 import { ContentTypeReaction } from "@xmtp/content-type-reaction";
 import { useReadReceipts } from "../hooks/useReadReceipts";
-import { Avatar, Card, Profile, RecordItem, FlameSVG, EnsSVG } from '@ensdomains/thorin'
+import { Avatar, Tag, Card, Profile, RecordItem, FlameSVG, EnsSVG } from '@ensdomains/thorin'
 import { shortAddress } from "../util/shortAddress";
 import { useMyENSResolver } from "../hooks/ensResolving";
+import { useUser } from "../hooks/useUser";
 
 const appearsInMessageList = (message: Message): boolean => {
   if (ContentTypeReaction.sameAs(message.contentType as ContentTypeId)) {
@@ -29,6 +30,7 @@ export default function ConversationView({
   conversation: Conversation;
 }): ReactElement {
   const liveConversation = useLiveConversation(conversation);
+  const user = useUser(conversation.peerAddress)
 
   const messages = useMessages(conversation);
 
@@ -79,9 +81,20 @@ export default function ConversationView({
               {ensName}
             </RecordItem>
           }
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem velit tenetur, hic odio excepturi assumenda dolores sint esse odit explicabo aliquam iste vitae officia ipsum accusamus reiciendis! Cum, odio quia?
-          </div>
+          {
+            user &&
+            (
+              <Tag>{user?.category}</Tag>
+            )
+          }
+          {
+            user &&
+            (
+              <div>
+                {user?.bio}
+              </div>
+            )
+          }
 
         </div>
       </div>

@@ -86,14 +86,14 @@ const RoleSelectComponent = (props) => {
         <div
           key={index}
           onClick={() => handleCardClick(object.title)}
-          className={`flex flex-col w-30 h-34 items-center ml-5 rounded-lg card p-3 ${
-            selectedRole === object.title ? "border border-indigo-600" : ""
+          className={`transition-all duration-500 cursor-pointer ease-out bg-white bg-opacity-0 flex flex-col w-30 h-34 items-center ml-5 rounded-lg card p-3 ${
+            selectedRole === object.title ? "bg-opacity-100 shadow-md " : ""
           }`}
         >
           <img
             src={`./${object.image}`}
             alt={object.title}
-            className="w-24 h-24 rounded-full mb-2"
+            className="w-24 h-24 mb-2"
           />
           <div className="text-center">{object.title}</div>
         </div>
@@ -145,7 +145,10 @@ const SelfIntroduction = () => {
           </Field>
           <div className="">
             <Field label="Who would you like to meet?">
-              <div id="interest" className="flex flex-wrap justify-around">
+              <div
+                id="interest"
+                className="flex flex-wrap gap-1 justify-around"
+              >
                 {[
                   "Graphic Designer",
                   "Illustrator",

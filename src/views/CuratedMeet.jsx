@@ -27,7 +27,7 @@ const CuratedMeet = () => {
   async function getMatch() {
     // const response = await axios.get(`${base_url}/user/${address}`);
     // console.log(response.data);
-    setAddress("0xf9a3BB070c1f9b3186A547DeD991BeD04a289C5B");
+    setAddress("0xf0490b45884803924Ca84C2051ef435991D7350D");
   }
   useEffect(() => {
     getMatch();
@@ -40,21 +40,16 @@ const CuratedMeet = () => {
             className="text-4xl mb-6 text-center"
             style={{ marginTop: "100px" }}
           >
-            Your curated matchup
+            🎉 Your curated matchup 🎉
           </Heading>
           <iv className="flex gap-5 flex-col items-center justify-around">
-            <div className="flex items-center justify-around">
+            <div className="flex gap-2 items-center justify-around">
               <Profile
                 address={matchedUser?.wallet_address}
                 avatar={ensAvatar}
                 ensName={ensName}
               ></Profile>
-              <Tag>{matchedUser.category}</Tag>
-              <div className="userRole bg-blue-400 rounded-lg p-3.5 inline-flex justify-start items-start">
-                <div className="roleText text-white text-sm font-bold font-space-grotesk">
-                  {matchedUser.category}
-                </div>
-              </div>
+              <Tag colorStyle="bluePrimary">{matchedUser.category}</Tag>
             </div>
             <div className="p-6 w-[637px]  bg-neutral-50 rounded-[20px] border border-neutral-300 mx-auto my-auto">
               {matchedUser.bio}
