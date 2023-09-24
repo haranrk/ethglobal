@@ -17,7 +17,7 @@ export default function HomeView(): ReactElement {
 
 
   return (
-    <div className="p-5 pt-6">
+    <div className="p-4">
       <div>
         <div className="p-3 flex justify-between items-center">
           <Heading>Conversations</Heading>

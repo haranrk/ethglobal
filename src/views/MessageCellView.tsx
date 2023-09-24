@@ -12,6 +12,7 @@ import MessageRepliesView from "./MessageRepliesView";
 import ReactionsView from "./ReactionsView";
 import ReadReceiptView from "./ReadReceiptView";
 import { useEnsName, useEnsAvatar } from 'wagmi'
+import { Tag } from '@ensdomains/thorin'
 
 function ImageAttachmentContent({
   attachment,
@@ -107,12 +108,13 @@ export default function MessageCellView({
   const ensName = useEnsName({ address: message.senderAddress });
   return (
     <div className="flex">
-      <span
-        title={message.sentByMe ? "You" : message.senderAddress}
-        className={message.sentByMe ? "text-zinc-500" : "text-green-500"}
+      <Tag
+        // title={message.sentByMe ? "You" : message.senderAddress}
+        className="h-5"
+        colorStyle={message.sentByMe ? "greenSecondary" : "blueSecondary"}
       >
-        {ensName?.data || shortAddress(message.senderAddress)}:
-      </span>
+        {ensName?.data || shortAddress(message.senderAddress)}
+      </Tag>
       <div className="ml-2">
         <MessageContent message={message} />
         <MessageRepliesView message={message} />

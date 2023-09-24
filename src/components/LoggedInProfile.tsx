@@ -29,9 +29,12 @@ export default function LoggedInProfile({
     await disconnectAsync();
     indexedDB.deleteDatabase("DB");
     localStorage.removeItem("_insecurePrivateKey");
-
     navigate("/");
     setClient(null);
+  }
+
+  async function goToProfile() {
+    navigate("/profile")
   }
   return (
     <Profile
@@ -40,6 +43,11 @@ export default function LoggedInProfile({
       avatar={ensAvatar?.data || undefined}
       ensName={ensName?.data || undefined}
       dropdownItems={[
+        {
+          label: 'Profile',
+          color: 'text',
+          onClick: goToProfile,
+        },
         {
           label: 'Copy Address',
           color: 'text',

@@ -5,6 +5,7 @@ import ReplyComposer from "./ReplyComposer";
 import { MessageContent } from "./MessageCellView";
 import { shortAddress } from "../util/shortAddress";
 import { useEnsName, useEnsAvatar } from 'wagmi'
+import { Tag } from '@ensdomains/thorin'
 
 export default function MessageRepliesView({
   message,
@@ -19,10 +20,10 @@ export default function MessageRepliesView({
   return isShowingReplies ? (
     <div className="py-2">
       {replies.length > 0 && (
-        <div className="mb-2">
+        <div className="mb-2 flex flex-col gap-1">
           {replies.map((message) => (
-            <div className="flex text-xs space-x-1" key={message.xmtpID}>
-              <span>{ensName?.data || shortAddress(message.senderAddress)}:</span>
+            <div className="flex text-xs space-x-1 items-center gap-1" key={message.xmtpID}>
+              <Tag colorStyle={message.sentByMe ? "greenSecondary" : "bluePrimary"}>{ensName?.data || shortAddress(message.senderAddress)}</Tag>
               <MessageContent message={message} />
             </div>
           ))}

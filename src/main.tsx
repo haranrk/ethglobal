@@ -23,6 +23,7 @@ import SelfIntroduction from "./views/SelfIntroduction.jsx";
 import CuratedMeet from "./views/CuratedMeet.jsx";
 import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout.tsx";
+import UserProfile from "./views/UserProfile.tsx";
 
 async function conversationLoader({ params }: any) {
   const conversation = await findConversation(params.conversationTopic);
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage />,
+      },
+      {
+        path: "/profile",
+        element: <UserProfile />,
       },
       {
         path: "messages",
