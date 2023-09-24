@@ -43,7 +43,7 @@ export default function ConversationView({
   }, [messages?.length]);
 
   return (
-    <div className="p-4 pb-20">
+    <div className="p-4">
       {/* <Header>
         <div className=" flex justify-between font-bold">
           <Profile
@@ -106,7 +106,7 @@ export default function ConversationView({
           </div>
           <MessageComposerView conversation={conversation} />
         </div>
-        <div className="bg-white h-screen  fixed w-64 right-0 flex flex-col content-center items-center text-center gap-5 p-10">
+        <div className="bg-white rounded-xl  fixed w-64 right-5 shadow-sm flex flex-col content-center items-center text-center gap-5 p-10">
           <div className="w-32">
             <Avatar src={ensAvatar?.data || undefined}></Avatar>
           </div>

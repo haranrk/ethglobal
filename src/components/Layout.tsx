@@ -15,7 +15,7 @@ export default function Layout({
   return (
     <div>
       <LoggedInNavbar></LoggedInNavbar>
-      <div className="mt-14">
+      <div className="mt-20">
         <Outlet></Outlet>
       </div>
     </div>
