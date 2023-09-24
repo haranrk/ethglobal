@@ -12,7 +12,10 @@ import { findConversation } from "./model/conversations";
 import ConversationViewWithLoader from "./views/ConversationViewWithLoader.tsx";
 import NewConversationView from "./views/NewConversationView.tsx";
 import Homepage from "./views/Homepage.jsx";
+import WalletConnect from "./views/WalletConnect.jsx";
+import SocialConnect from "./views/SocialConnect.jsx";
 import WalletContext from "./contexts/WalletContext.tsx";
+import SelfIntroduction from "./views/SelfIntroduction.jsx";
 
 async function conversationLoader({ params }: any) {
   const conversation = await findConversation(params.conversationTopic);
@@ -36,6 +39,19 @@ const router = createHashRouter([
   {
     path: "new",
     element: <NewConversationView />,
+  },
+  {
+    path: "walletconnect",
+    element: <WalletConnect />,
+  },
+
+  {
+    path: "selfintroduction",
+    element: <SelfIntroduction />,
+  },
+  {
+    path: "curatedmatch",
+    element: <CuratedMatch />,
   },
 ]);
 
