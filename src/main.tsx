@@ -13,6 +13,8 @@ import ConversationViewWithLoader from "./views/ConversationViewWithLoader.tsx";
 import NewConversationView from "./views/NewConversationView.tsx";
 import Homepage from "./views/Homepage.jsx";
 import WalletContext from "./contexts/WalletContext.tsx";
+import Header from "./components/Header.tsx";
+import Navbarx from "./components/Navbarx.tsx";
 
 async function conversationLoader({ params }: any) {
   const conversation = await findConversation(params.conversationTopic);
@@ -45,6 +47,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       <ThorinGlobalStyles />
       <ClientProvider>
         <WalletContext>
+          {/* <Navbarx></Navbarx> */}
           <RouterProvider router={router} />
         </WalletContext>
       </ClientProvider>
