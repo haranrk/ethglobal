@@ -7,7 +7,11 @@ import App from "./App.tsx";
 import { ThemeProvider } from "styled-components";
 import { ThorinGlobalStyles, darkTheme, lightTheme } from "@ensdomains/thorin";
 import ClientProvider from "./contexts/ClientContext.tsx";
-import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
 import { findConversation } from "./model/conversations";
 import ConversationViewWithLoader from "./views/ConversationViewWithLoader.tsx";
 import NewConversationView from "./views/NewConversationView.tsx";
@@ -16,7 +20,7 @@ import WalletConnect from "./views/WalletConnect.jsx";
 import SocialConnect from "./views/SocialConnect.jsx";
 import WalletContext from "./contexts/WalletContext.tsx";
 import SelfIntroduction from "./views/SelfIntroduction.jsx";
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout.tsx";
 import UserProfile from "./views/UserProfile.tsx";
 
@@ -59,9 +63,8 @@ const router = createBrowserRouter([
         path: "selfintroduction",
         element: <SelfIntroduction />,
       },
-    ]
-  }
-
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
