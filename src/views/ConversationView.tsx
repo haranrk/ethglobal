@@ -12,7 +12,8 @@ import { ContentTypeId } from "@xmtp/xmtp-js";
 import { ContentTypeReaction } from "@xmtp/content-type-reaction";
 import { useReadReceipts } from "../hooks/useReadReceipts";
 import { useEnsName, useEnsAvatar } from 'wagmi'
-import { Profile } from '@ensdomains/thorin'
+import { Avatar, Card, Profile, RecordItem, FlameSVG, EnsSVG } from '@ensdomains/thorin'
+import { shortAddress } from "../util/shortAddress";
 
 const appearsInMessageList = (message: Message): boolean => {
   if (ContentTypeReaction.sameAs(message.contentType as ContentTypeId)) {
@@ -44,7 +45,7 @@ export default function ConversationView({
   return (
     <div className="p-4 pb-20 pt-14">
       <Header>
-        <div className="flex justify-between font-bold">
+        <div className=" flex justify-between font-bold">
           <Profile
             address={conversation.peerAddress}
             avatar={ensAvatar?.data || undefined}
@@ -83,8 +84,8 @@ export default function ConversationView({
         )}
       </Header>
 
-      <div className="grid grid-cols-3">
-        <div>
+      <div className="flex mt-6">
+        <div className="">
           <div className="mt-10">
             {messages?.length == 0 && <p>No messages yet.</p>}
             {messages ? (
@@ -108,7 +109,24 @@ export default function ConversationView({
           </div>
           <MessageComposerView conversation={conversation} />
         </div>
-        <div>Hellow</div>
+        <div className="bg-white h-screen  fixed w-64 right-0 flex flex-col content-center items-center text-center gap-5 p-10">
+          <div className="w-32">
+            <Avatar src={ensAvatar?.data || undefined}></Avatar>
+          </div>
+          <RecordItem icon={<FlameSVG />} inline value={conversation.peerAddress}>
+            {shortAddress(conversation.peerAddress)}
+          </RecordItem>
+          {ensName &&
+            <RecordItem icon={<EnsSVG />} inline value={ensName.data}>
+              {ensName.data}
+            </RecordItem>
+          }
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem velit tenetur, hic odio excepturi assumenda dolores sint esse odit explicabo aliquam iste vitae officia ipsum accusamus reiciendis! Cum, odio quia?
+
+          </div>
+
+        </div>
       </div>
     </div>
   );

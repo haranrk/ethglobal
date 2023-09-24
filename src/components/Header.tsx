@@ -4,7 +4,7 @@ export default function Header({
   children,
 }: PropsWithChildren<unknown>): ReactElement {
   return (
-    <div className="text-xs bold fixed top-0 left-0 right-0 bg-white dark:bg-zinc-900 p-4 shadow">
+    <div className="text-xs z-10 bold fixed top-0 left-0 right-0 bg-white dark:bg-zinc-900 p-4 shadow">
       {children}
     </div>
   );

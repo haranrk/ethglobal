@@ -1,12 +1,10 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import { Button, Heading, Typography } from '@ensdomains/thorin'
 
 const HomePage = () => {
   return (
     <div className="h-screen ">
       {/* Navbar */}
-      <Navbar />
 
       {/* Hero Section */}
       <div className="grid grid-cols-1 place-items-center mb-5">
