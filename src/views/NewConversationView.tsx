@@ -87,14 +87,6 @@ export default function NewConversationView(): ReactElement {
 
   return (
     <div className="p-4 pt-14">
-      <Header>
-        <div className="flex justify-between">
-          <h1>Make a new conversation</h1>
-          <Link className="text-blue-600" to="/">
-            Go Back
-          </Link>
-        </div>
-      </Header>
 
       <Card title="Who do you want to message?" >
         <Input

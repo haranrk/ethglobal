@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../components/Navbar";
 import { Button, Heading, Typography } from '@ensdomains/thorin'
 
 const HomePage = () => {

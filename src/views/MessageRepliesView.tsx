@@ -4,6 +4,7 @@ import { useReplies } from "../hooks/useReplies";
 import ReplyComposer from "./ReplyComposer";
 import { MessageContent } from "./MessageCellView";
 import { shortAddress } from "../util/shortAddress";
+import { useEnsName, useEnsAvatar } from 'wagmi'
 
 export default function MessageRepliesView({
   message,
@@ -12,6 +13,7 @@ export default function MessageRepliesView({
 }): ReactElement {
   const replies = useReplies(message);
 
+  const ensName = useEnsName({ address: message.senderAddress });
   const [isShowingReplies, setIsShowingReplies] = useState(false);
 
   return isShowingReplies ? (
@@ -20,7 +22,7 @@ export default function MessageRepliesView({
         <div className="mb-2">
           {replies.map((message) => (
             <div className="flex text-xs space-x-1" key={message.xmtpID}>
-              <span>{shortAddress(message.senderAddress)}:</span>
+              <span>{ensName?.data || shortAddress(message.senderAddress)}:</span>
               <MessageContent message={message} />
             </div>
           ))}

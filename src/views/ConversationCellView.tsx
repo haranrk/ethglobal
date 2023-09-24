@@ -28,9 +28,6 @@ export default function ConversationCellView({
                 ensName={ensName?.data || undefined}
               />
             </div>
-            {/* <RecordItem icon={<FlameSVG />} inline value="0xb794f5ea0ba39494ce839613fffba74279579268">
-              0xb794...9268
-            </RecordItem> */}
             <span className="text-blue-700 dark:text-blue-500">
               {ensName?.data || shortAddress(conversation.peerAddress)}
             </span>{" "}
