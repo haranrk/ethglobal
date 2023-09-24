@@ -50,15 +50,13 @@ const router = createBrowserRouter([
         path: "walletconnect",
         element: <WalletConnect />,
       },
+      {
+        path: "selfintroduction",
+        element: <SelfIntroduction />,
+      },
+    ]
+  }
 
-  {
-    path: "selfintroduction",
-    element: <SelfIntroduction />,
-  },
-  {
-    path: "curatedmatch",
-    element: <CuratedMatch />,
-  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
