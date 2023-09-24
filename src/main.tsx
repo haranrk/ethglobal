@@ -20,6 +20,7 @@ import WalletConnect from "./views/WalletConnect.jsx";
 import SocialConnect from "./views/SocialConnect.jsx";
 import WalletContext from "./contexts/WalletContext.tsx";
 import SelfIntroduction from "./views/SelfIntroduction.jsx";
+import CuratedMeet from "./views/CuratedMeet.jsx";
 import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout.tsx";
 import UserProfile from "./views/UserProfile.tsx";
@@ -62,6 +63,11 @@ const router = createBrowserRouter([
       {
         path: "selfintroduction",
         element: <SelfIntroduction />,
+      },
+      ,
+      {
+        path: "curatedmeet",
+        element: <CuratedMeet />,
       },
     ],
   },
