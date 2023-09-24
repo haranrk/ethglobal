@@ -1,6 +1,5 @@
 import { FormEvent, ReactElement, createRef, useEffect, useState } from "react";
 import { Link, redirect, useNavigate } from "react-router-dom";
-import Header from "../components/Header";
 // import Button from "../components/Button";
 import { startConversation } from "../model/conversations";
 import { useClient } from "../hooks/useClient";
