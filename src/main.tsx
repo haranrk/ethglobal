@@ -64,7 +64,6 @@ const router = createBrowserRouter([
         path: "selfintroduction",
         element: <SelfIntroduction />,
       },
-      ,
       {
         path: "curatedmeet",
         element: <CuratedMeet />,
