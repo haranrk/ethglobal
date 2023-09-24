@@ -5,7 +5,6 @@ const HomePage = () => {
   return (
     <div className="h-screen ">
       {/* Navbar */}
-      <Navbar p/>
 
       {/* Hero Section */}
       <div className="grid grid-cols-1 place-items-center mb-5">
