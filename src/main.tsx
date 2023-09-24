@@ -15,8 +15,6 @@ import Homepage from "./views/Homepage.jsx";
 import WalletConnect from "./views/WalletConnect.jsx";
 import SocialConnect from "./views/SocialConnect.jsx";
 import WalletContext from "./contexts/WalletContext.tsx";
-import Header from "./components/Header.tsx";
-import Navbarx from "./components/Layout.tsx";
 import SelfIntroduction from "./views/SelfIntroduction.jsx";
 import { BrowserRouter } from 'react-router-dom'
 import Layout from "./components/Layout.tsx";
@@ -33,11 +31,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <App />,
+        element: <Homepage />,
       },
       {
-        path: "homepage",
-        element: <Homepage />,
+        path: "messages",
+        element: <App />,
       },
       {
         path: "c/:conversationTopic",

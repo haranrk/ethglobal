@@ -1,9 +1,6 @@
-import { PropsWithChildren, ReactElement } from "react";
-import { Profile, Button } from '@ensdomains/thorin'
-import Header from "./Header";
-import { useEnsName, useEnsAvatar } from 'wagmi'
-import { useDisconnect } from "wagmi";
 import { useClient, useSetClient } from "../hooks/useClient";
+import LoggedInProfile from "./LoggedInProfile";
+import LoggedOutProfile from "./LoggedOutProfile";
 
 import { Link } from "react-router-dom";
 
@@ -12,51 +9,16 @@ export default function LoggedInNavbar({
 }: PropsWithChildren<unknown>): ReactElement {
 
   const client = useClient()!;
-  const ensName = useEnsName({ address: client.address });
-  const ensAvatar = useEnsAvatar({ address: client.address });
-  const { disconnectAsync } = useDisconnect();
-  const setClient = useSetClient();
-
-  const copyToClipBoard = async (text: string) => {
-    try {
-      await navigator.clipboard.writeText(text)
-    } catch (err) {
-      console.error('Failed to copy text: ', err)
-    }
-  }
-  async function logout() {
-    await disconnectAsync();
-    indexedDB.deleteDatabase("DB");
-    localStorage.removeItem("_insecurePrivateKey");
-    setClient(null);
-  }
   return (
 
-    <nav className="bg-gray-100 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 backdrop-blur-md bg-opacity-0 dark:border-gray-600">
+    <nav className="fixed w-full z-20 top-0 left-0 border-b backdrop-blur-md bg-opacity-30 bg-white shadow-sm dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="https://flowbite.com/" className="flex items-center">
           <img src="https://flowbite.com/docs/images/logo.svg" className="h-8 mr-3" alt="Flowbite Logo" />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">MakerMeet</span>
         </a>
         <div className="flex md:order-2">
-          <Profile
-            className="shadow-sm ring ring-black"
-            address={client.address}
-            avatar={ensAvatar?.data || undefined}
-            ensName={ensName?.data || undefined}
-            dropdownItems={[
-              {
-                label: 'Copy Address',
-                color: 'text',
-                onClick: () => copyToClipBoard(client.address),
-              },
-              {
-                label: 'Logout',
-                color: 'text',
-                onClick: logout,
-              }
-            ]}
-          />
+          {client ? <LoggedInProfile></LoggedInProfile> : <LoggedOutProfile></LoggedOutProfile>}
           {/* <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get started</button> */}
           <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
           </button>

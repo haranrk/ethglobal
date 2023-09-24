@@ -12,14 +12,9 @@ export default function Layout({
   children,
 }: PropsWithChildren<unknown>): ReactElement {
 
-  const client = useClient()!;
   return (
     <div>
-      {client ? <LoggedInNavbar></LoggedInNavbar> :
-        <Header>
-          Not logged in header
-        </Header>
-      }
+      <LoggedInNavbar></LoggedInNavbar>
       <div className="mt-14">
         <Outlet></Outlet>
       </div>

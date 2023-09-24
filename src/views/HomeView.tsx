@@ -4,7 +4,6 @@ import { useClient, useSetClient } from "../hooks/useClient";
 import { shortAddress } from "../util/shortAddress";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import Navbar from "../components/Layout";
 import { useDisconnect } from "wagmi";
 import { Avatar, Spinner, Card, Button } from '@ensdomains/thorin'
 import { Profile } from '@ensdomains/thorin'

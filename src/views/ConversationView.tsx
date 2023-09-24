@@ -44,7 +44,7 @@ export default function ConversationView({
 
   return (
     <div className="p-4 pb-20 pt-14">
-      <Header>
+      {/* <Header>
         <div className=" flex justify-between font-bold">
           <Profile
             address={conversation.peerAddress}
@@ -58,9 +58,6 @@ export default function ConversationView({
               }
             ]}
           />
-          {/* <span className="flex-grow">
-            {liveConversation?.title || conversation.peerAddress}
-          </span> */}
           <div className="space-x-4">
             <button
               className="inline-block space-x-1 text-zinc-600"
@@ -82,7 +79,7 @@ export default function ConversationView({
             dismiss={() => setIsShowingSettings(false)}
           />
         )}
-      </Header>
+      </Header> */}
 
       <div className="flex mt-6">
         <div className="">
