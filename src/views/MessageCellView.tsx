@@ -11,8 +11,9 @@ import { ContentTypeReply, Reply } from "@xmtp/content-type-reply";
 import MessageRepliesView from "./MessageRepliesView";
 import ReactionsView from "./ReactionsView";
 import ReadReceiptView from "./ReadReceiptView";
-import { useEnsName, useEnsAvatar } from 'wagmi'
 import { Tag } from '@ensdomains/thorin'
+import { useMyENSResolver } from "../hooks/ensResolving";
+import ReactTimeAgo from "react-time-ago";
 
 function ImageAttachmentContent({
   attachment,
@@ -105,21 +106,27 @@ export default function MessageCellView({
   message: Message;
   readReceiptText: string | undefined;
 }): ReactElement {
-  const ensName = useEnsName({ address: message.senderAddress });
+  console.log(message.sentAt)
+  const [ensName, ensAvatar] = useMyENSResolver(message.senderAddress);
   return (
-    <div className="flex">
+    <div className="flex gap-2">
       <Tag
         // title={message.sentByMe ? "You" : message.senderAddress}
         className="h-5"
         colorStyle={message.sentByMe ? "greenSecondary" : "blueSecondary"}
       >
-        {ensName?.data || shortAddress(message.senderAddress)}
+        {ensName || shortAddress(message.senderAddress)}
       </Tag>
-      <div className="ml-2">
-        <MessageContent message={message} />
-        <MessageRepliesView message={message} />
+      <div className="flex flex-col gap-2">
+        <div className=" bg-white rounded-md p-2 shadow-md ">
+          <MessageContent message={message} />
+          <MessageRepliesView message={message} />
+          <div className="flex text-xs italic text-gray-500 gap-2">
+            <ReactTimeAgo date={message.sentAt}></ReactTimeAgo>
+          </div>
+          <ReadReceiptView readReceiptText={readReceiptText} />
+        </div>
         <ReactionsView message={message} />
-        <ReadReceiptView readReceiptText={readReceiptText} />
       </div>
     </div>
   );

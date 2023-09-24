@@ -1,19 +1,18 @@
 
 import { Profile, Button } from '@ensdomains/thorin'
 import Header from "./Header";
-import { useEnsName, useEnsAvatar } from 'wagmi'
 import { useClient, useSetClient } from "../hooks/useClient";
 import { PropsWithChildren, ReactElement } from "react";
 import { useDisconnect } from "wagmi";
 import { useNavigate } from 'react-router-dom';
+import { useMyENSResolver } from '../hooks/ensResolving';
 
 
 export default function LoggedInProfile({
   children,
 }: PropsWithChildren<unknown>): ReactElement {
   const client = useClient()!;
-  const ensName = useEnsName({ address: client.address });
-  const ensAvatar = useEnsAvatar({ address: client.address });
+  const [ensName, ensAvatar] = useMyENSResolver(client.address);
   const { disconnectAsync } = useDisconnect();
   const setClient = useSetClient();
 
@@ -40,8 +39,8 @@ export default function LoggedInProfile({
     <Profile
       className="shadow-sm ring ring-black"
       address={client.address}
-      avatar={ensAvatar?.data || undefined}
-      ensName={ensName?.data || undefined}
+      avatar={ensAvatar}
+      ensName={ensName}
       dropdownItems={[
         {
           label: 'Profile',

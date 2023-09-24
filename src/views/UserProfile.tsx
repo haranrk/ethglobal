@@ -1,16 +1,15 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { useClient } from "../hooks/useClient";
-import { useEnsName, useEnsAvatar } from 'wagmi'
 import { Field, Tag, Typography, Avatar, RecordItem, EnsSVG, Heading, Textarea, Button, Select, Card, WalletSVG, FlameSVG } from '@ensdomains/thorin'
+import { useMyENSResolver } from "../hooks/ensResolving";
+import axios from "axios";
 
 
 export default function UserProfile(): ReactElement {
   const client = useClient();
+  const base_url = "http://127.0.0.1:5000";
 
-  const address = "0x937C0d4a6294cdfa575de17382c7076b579DC176"
-  // const address = "0x1792DD5A4b75F45b2DAB732a848E65B487f7e33c"
-  const ensName = useEnsName({ address: address });
-  const ensAvatar = useEnsAvatar({ address: address });
+  const [ensName, ensAvatar] = useMyENSResolver(client?.address);
   const [editingBio, setEditingBio] = useState(false)
   const categoryOptions = ["Web Designer", "Web Developer"].map((c) => ({ value: c, label: c }))
   const [user, setUser] = useState({
@@ -18,6 +17,16 @@ export default function UserProfile(): ReactElement {
     "category": "Web Designer",
     "preferences": ["Web Designer", "Web Developer"],
   })
+  useEffect(() => {
+    async function fetchUser() {
+      if (client?.address) {
+        const response = await axios.get(`${base_url}/user/${client.address}`)
+        setUser(response.data)
+      }
+
+    }
+    fetchUser()
+  }, [client?.address])
   return (
     <div className="flex p-10 flex-col gap-5">
       <div>
@@ -25,7 +34,7 @@ export default function UserProfile(): ReactElement {
       </div>
       < div className="flex gap-5">
         <div className="w-32">
-          <Avatar src={ensAvatar?.data || undefined} label="userAvatar"></Avatar>
+          <Avatar src={ensAvatar || undefined} label="userAvatar"></Avatar>
         </div>
         <div className="flex flex-col gap-2">
           <div>
@@ -33,10 +42,10 @@ export default function UserProfile(): ReactElement {
               {client?.address}
             </RecordItem>
           </div>
-          {ensName.data &&
+          {ensName &&
             <div>
-              <RecordItem icon={<EnsSVG />} inline value={ensName.data}>
-                {ensName.data}
+              <RecordItem icon={<EnsSVG />} inline value={ensName}>
+                {ensName}
               </RecordItem>
             </div>
 
@@ -44,7 +53,7 @@ export default function UserProfile(): ReactElement {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <Textarea label="Bio" disabled={!editingBio} defaultValue={user.bio} onChange={(e) => { setUser(u => { return { ...u, bio: e.target.value } }) }} />
+        <Textarea label="Bio" disabled={!editingBio} value={user.bio} onChange={(e) => { setUser(u => { return { ...u, bio: e.target.value } }) }} />
         <Button className=" w-10" size="small" onClick={() => setEditingBio(!editingBio)} colorStyle={editingBio ? "greenPrimary" : "bluePrimary"}>{editingBio ? "Save" : "Edit"}</Button>
       </div>
       <div>

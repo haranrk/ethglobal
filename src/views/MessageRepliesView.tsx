@@ -4,8 +4,8 @@ import { useReplies } from "../hooks/useReplies";
 import ReplyComposer from "./ReplyComposer";
 import { MessageContent } from "./MessageCellView";
 import { shortAddress } from "../util/shortAddress";
-import { useEnsName, useEnsAvatar } from 'wagmi'
 import { Tag } from '@ensdomains/thorin'
+import { useMyENSResolver } from "../hooks/ensResolving";
 
 export default function MessageRepliesView({
   message,
@@ -14,7 +14,7 @@ export default function MessageRepliesView({
 }): ReactElement {
   const replies = useReplies(message);
 
-  const ensName = useEnsName({ address: message.senderAddress });
+  const [ensName, ensAvatar] = useMyENSResolver(message.senderAddress);
   const [isShowingReplies, setIsShowingReplies] = useState(false);
 
   return isShowingReplies ? (
@@ -23,7 +23,7 @@ export default function MessageRepliesView({
         <div className="mb-2 flex flex-col gap-1">
           {replies.map((message) => (
             <div className="flex text-xs space-x-1 items-center gap-1" key={message.xmtpID}>
-              <Tag colorStyle={message.sentByMe ? "greenSecondary" : "bluePrimary"}>{ensName?.data || shortAddress(message.senderAddress)}</Tag>
+              <Tag colorStyle={message.sentByMe ? "greenSecondary" : "bluePrimary"}>{ensName || shortAddress(message.senderAddress)}</Tag>
               <MessageContent message={message} />
             </div>
           ))}

@@ -7,13 +7,10 @@ import Header from "../components/Header";
 import { useDisconnect } from "wagmi";
 import { Avatar, Spinner, Card, Button, Heading } from '@ensdomains/thorin'
 import { Profile } from '@ensdomains/thorin'
-import { useEnsName, useEnsAvatar } from 'wagmi'
 
 export default function HomeView(): ReactElement {
   const client = useClient()!;
   const [copied, setCopied] = useState(false);
-  const ensName = useEnsName({ address: client.address });
-  const ensAvatar = useEnsAvatar({ address: client.address });
 
 
   return (

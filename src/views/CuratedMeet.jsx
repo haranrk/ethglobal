@@ -4,16 +4,16 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useClient } from "../hooks/useClient";
-import { useEnsName, useEnsAvatar } from "wagmi";
+import { useMyENSResolver } from "../hooks/ensResolving";
+import { useUser } from "../hooks/useUser";
 
 const CuratedMeet = () => {
   const client = useClient();
-  const base_url = "http://127.0.0.1:5000";
-  const [matchedUser, setMatchedUser] = useState(undefined);
   const [regenerationCount, setRegenerationCount] = useState(3);
-  const ensName = useEnsName({ address: matchedUser?.wallet_address });
-  const ensAvatar = useEnsAvatar({ address: matchedUser?.wallet_address });
   const navigate = useNavigate();
+  const [address, setAddress] = useState(null);
+  const matchedUser = useUser(address);
+  const [ensName, ensAvatar] = useMyENSResolver(address);
 
   async function startChatting() {
     console.log(client, client.conv, matchedUser.wallet_address);
@@ -23,14 +23,12 @@ const CuratedMeet = () => {
     );
     navigate(`/c/${conversation.topic}`);
   }
-  async function getMatch() {
-    const response = await axios.get(
-      `${base_url}/user/0xB998CA05293F1f2835906B3D8B1DC8c37aFb63D0`
-    );
-    console.log(response.data);
-    setMatchedUser(response.data);
-  }
 
+  async function getMatch() {
+    // const response = await axios.get(`${base_url}/user/${address}`);
+    // console.log(response.data);
+    setAddress("0xf9a3BB070c1f9b3186A547DeD991BeD04a289C5B");
+  }
   useEffect(() => {
     getMatch();
   }, []);
@@ -48,8 +46,8 @@ const CuratedMeet = () => {
             <div className="flex items-center justify-around">
               <Profile
                 address={matchedUser?.wallet_address}
-                avatar={ensAvatar?.data || undefined}
-                ensName={ensName?.data || undefined}
+                avatar={ensAvatar}
+                ensName={ensName}
               ></Profile>
               <Tag>{matchedUser.category}</Tag>
               <div className="userRole bg-blue-400 rounded-lg p-3.5 inline-flex justify-start items-start">
