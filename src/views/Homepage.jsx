@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Heading, Typography } from '@ensdomains/thorin'
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const HomePage = () => {
   return (
@@ -9,11 +10,11 @@ const HomePage = () => {
       {/* Hero Section */}
       <div className="grid grid-cols-1 place-items-center mb-5">
         <div className="text-center">
-          <h1 className="text-3xl font-bold mt-5 mb-4">
+          <h1 className="text-3xl font-bold font-newsreader mt-12 mb-4">
             <span>Meet and collaborate with other designers. </span> <span className="text-blue-500">Grow your brand.</span>
           </h1>
-          <div className="mb-8">
-            <Button as="a" href="#" colorStyle="blueGradient">Get Started</Button>
+          <div className="mb-8 text-center">
+            <ConnectButton></ConnectButton>
           </div>
         </div>
 
@@ -38,13 +39,9 @@ const HomePage = () => {
         <img src="https://xmtp.org/assets/images/secure-web3-messaging-post-dac3c5bbeae5d9b68db780841b4c85d3.png" alt="xmtp-img" className="">
         </img>
       </div>
-      <div className="mb-10 p-5">
-        <img src="/homepage.jpg" alt="Description" className="w-full" />
-      </div>
-      </div>
-
-      {/* About */}
-      <div className="grid grid-cols-1 place-items-left ml-10">
+    
+          {/* About */}
+          <div className="grid grid-cols-1 place-items-left ml-10">
         <div className="mb-4">
           <div className="w-50 mb-5">
             <Typography fontVariant="large" weight="bold" color="inherit">WHAT WE BELIEVE</Typography>
@@ -57,6 +54,9 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+    </div>
+
+
     </div>
   );
 };

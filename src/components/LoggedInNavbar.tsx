@@ -35,7 +35,7 @@ export default function LoggedInNavbar({
           <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <Link className="text-gray-900" to="new">
-                New Conversation
+                Matchmaker ✨
               </Link>
             </li>
             <li>

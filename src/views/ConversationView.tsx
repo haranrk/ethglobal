@@ -43,7 +43,7 @@ export default function ConversationView({
   }, [messages?.length]);
 
   return (
-    <div className="p-4">
+    <div className="p-4 pb-20">
       {/* <Header>
         <div className=" flex justify-between font-bold">
           <Profile
