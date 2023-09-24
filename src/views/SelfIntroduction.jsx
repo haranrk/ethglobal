@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-import { Card, Heading, Field, Select, Button, Textarea, CheckboxRow } from "@ensdomains/thorin";
+import React, { useEffect, useState } from "react";
+import {
+  Card,
+  Heading,
+  Field,
+  Select,
+  Button,
+  Textarea,
+  CheckboxRow,
+} from "@ensdomains/thorin";
 import { useClient } from "../hooks/useClient";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -30,8 +38,24 @@ const categories = [
 
 const RoleSelectComponent = (props) => {
   const { selectedRole, setSelectedRole } = props;
+  const navigate = useNavigate();
+  const client = useClient();
+  const base_url = "http://127.0.0.1:5000";
+
+  useEffect(() => {
+    const getMatch = async () => {
+      try {
+        const response = await axios.get(`${base_url}/user/${client.address}`);
+        console.log(response.data);
+        navigate("/curatedmeet");
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getMatch();
+  }, []);
   const handleCardClick = (role) => {
-    console.log(selectedRole)
+    console.log(selectedRole);
     setSelectedRole(role);
   };
 
@@ -95,7 +119,7 @@ const SelfIntroduction = () => {
       wallet_address: client.address,
     };
     try {
-      console.log(formData)
+      console.log(formData);
       const response = await axios.post(`${base_url}/users/new`, formData);
       if (response.status === 200) {
         console.log("Form submitted successfully", response.data);
@@ -109,50 +133,57 @@ const SelfIntroduction = () => {
   };
 
   return (
-      <div className="p-10">
-        <Heading className="mx-auto items-center" >Tell us about Yourself</Heading>
-    <form className="" onSubmit={handleSubmit}>
-      <div className="flex flex-col gap-5">
-        <Field label="How would you categorize yourself?">
-          <RoleSelectComponent
-            selectedRole={selectedRole}
-            setSelectedRole={setSelectedRole}
-          />
-        </Field>
-        <div className="">
-          <Field label="Who would you like to meet?" >
-          <div id="interest" className="flex flex-wrap justify-around">
-            {[
-              "Graphic Designer",
-              "Illustrator",
-              "Animator",
-              "UI/UX",
-              "Web Design",
-            ].map((item, index) => (
-              <CheckboxRow color="blue" label={item} onChange={(e) => { 
-                  console.log(item, index, e.target.checked)
-                if (e.target.checked) {
-                  setInterest((prevInterest) => [...prevInterest, item]);
-                } else {
-                  setInterest((prevInterest) => prevInterest.filter((i) => i !== item));
-                }
-              }} />
-            ))}
-          </div>
+    <div className="p-10">
+      <Heading className="mx-auto items-center">Tell us about Yourself</Heading>
+      <form className="" onSubmit={handleSubmit}>
+        <div className="flex flex-col gap-5">
+          <Field label="How would you categorize yourself?">
+            <RoleSelectComponent
+              selectedRole={selectedRole}
+              setSelectedRole={setSelectedRole}
+            />
           </Field>
+          <div className="">
+            <Field label="Who would you like to meet?">
+              <div id="interest" className="flex flex-wrap justify-around">
+                {[
+                  "Graphic Designer",
+                  "Illustrator",
+                  "Animator",
+                  "UI/UX",
+                  "Web Design",
+                ].map((item, index) => (
+                  <CheckboxRow
+                    color="blue"
+                    label={item}
+                    onChange={(e) => {
+                      console.log(item, index, e.target.checked);
+                      if (e.target.checked) {
+                        setInterest((prevInterest) => [...prevInterest, item]);
+                      } else {
+                        setInterest((prevInterest) =>
+                          prevInterest.filter((i) => i !== item)
+                        );
+                      }
+                    }}
+                  />
+                ))}
+              </div>
+            </Field>
+          </div>
+          <div className="">
+            <Textarea
+              id="bio"
+              label="Please provide a brief bio for people to know more about you"
+              defaultValue={bio}
+              onChange={(e) => setBio(e.target.value)}
+            />
+          </div>
+          <div className=" ">
+            <Button onClick={handleSubmit}>Next Step</Button>
+          </div>
         </div>
-        <div className="">
-        <Textarea id="bio" label="Please provide a brief bio for people to know more about you" defaultValue={bio} 
-            onChange={(e) => setBio(e.target.value)}
-         />
-        </div>
-        <div className=" ">
-            <Button onClick={handleSubmit}>
-              Next Step
-            </Button>
-        </div>
-      </div>
-    </form>
+      </form>
     </div>
   );
 };

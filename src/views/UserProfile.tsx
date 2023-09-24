@@ -10,8 +10,8 @@ export default function UserProfile(): ReactElement {
   const address = "0x937C0d4a6294cdfa575de17382c7076b579DC176"
   // const address = "0x1792DD5A4b75F45b2DAB732a848E65B487f7e33c"
   const ensName = useEnsName({ address: address });
-  const [editingBio, setEditingBio] = useState(false)
   const ensAvatar = useEnsAvatar({ address: address });
+  const [editingBio, setEditingBio] = useState(false)
   const categoryOptions = ["Web Designer", "Web Developer"].map((c) => ({ value: c, label: c }))
   const [user, setUser] = useState({
     "bio": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam dignissimos saepe facere velit illum commodi, esse praesentium, odio adipisci temporibus laboriosam vitae, magnam rerum! Voluptates beatae repellat et consequuntur. Quia!",
