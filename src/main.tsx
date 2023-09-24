@@ -7,11 +7,7 @@ import App from "./App.tsx";
 import { ThemeProvider } from "styled-components";
 import { ThorinGlobalStyles, darkTheme, lightTheme } from "@ensdomains/thorin";
 import ClientProvider from "./contexts/ClientContext.tsx";
-import {
-  createBrowserRouter,
-  createHashRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, createHashRouter, RouterProvider } from "react-router-dom";
 import { findConversation } from "./model/conversations";
 import ConversationViewWithLoader from "./views/ConversationViewWithLoader.tsx";
 import NewConversationView from "./views/NewConversationView.tsx";
@@ -19,10 +15,8 @@ import Homepage from "./views/Homepage.jsx";
 import WalletConnect from "./views/WalletConnect.jsx";
 import SocialConnect from "./views/SocialConnect.jsx";
 import WalletContext from "./contexts/WalletContext.tsx";
-import Header from "./components/Header.tsx";
-import Navbarx from "./components/Layout.tsx";
 import SelfIntroduction from "./views/SelfIntroduction.jsx";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom'
 import Layout from "./components/Layout.tsx";
 
 async function conversationLoader({ params }: any) {
@@ -37,11 +31,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <App />,
+        element: <Homepage />,
       },
       {
-        path: "homepage",
-        element: <Homepage />,
+        path: "messages",
+        element: <App />,
       },
       {
         path: "c/:conversationTopic",
@@ -56,17 +50,13 @@ const router = createBrowserRouter([
         path: "walletconnect",
         element: <WalletConnect />,
       },
-
       {
         path: "selfintroduction",
         element: <SelfIntroduction />,
       },
-    ],
-  },
-  // {
-  //   path: "curatedmatch",
-  //   element: <CuratedMatch />,
-  // },
+    ]
+  }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

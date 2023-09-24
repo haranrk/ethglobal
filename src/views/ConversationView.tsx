@@ -43,8 +43,8 @@ export default function ConversationView({
   }, [messages?.length]);
 
   return (
-    <div className="p-4 pb-20 pt-14">
-      <Header>
+    <div className="p-4 pb-20">
+      {/* <Header>
         <div className=" flex justify-between font-bold">
           <Profile
             address={conversation.peerAddress}
@@ -58,9 +58,6 @@ export default function ConversationView({
               }
             ]}
           />
-          {/* <span className="flex-grow">
-            {liveConversation?.title || conversation.peerAddress}
-          </span> */}
           <div className="space-x-4">
             <button
               className="inline-block space-x-1 text-zinc-600"
@@ -82,9 +79,9 @@ export default function ConversationView({
             dismiss={() => setIsShowingSettings(false)}
           />
         )}
-      </Header>
+      </Header> */}
 
-      <div className="flex mt-6">
+      <div className="flex p-4">
         <div className="">
           <div className="mt-10">
             {messages?.length == 0 && <p>No messages yet.</p>}
@@ -116,14 +113,13 @@ export default function ConversationView({
           <RecordItem icon={<FlameSVG />} inline value={conversation.peerAddress}>
             {shortAddress(conversation.peerAddress)}
           </RecordItem>
-          {ensName &&
+          {ensName.data &&
             <RecordItem icon={<EnsSVG />} inline value={ensName.data}>
               {ensName.data}
             </RecordItem>
           }
           <div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem velit tenetur, hic odio excepturi assumenda dolores sint esse odit explicabo aliquam iste vitae officia ipsum accusamus reiciendis! Cum, odio quia?
-
           </div>
 
         </div>

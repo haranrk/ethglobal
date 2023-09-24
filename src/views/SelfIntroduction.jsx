@@ -108,5 +108,4 @@ const SelfIntroduction = () => {
     </div>
   );
 };
-
 export default SelfIntroduction;
